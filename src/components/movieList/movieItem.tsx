@@ -10,6 +10,7 @@ type movieItemProps = Movie & {
 
 const MovieItem = ({
   title,
+  backdrop_path,
   poster_path,
   overview,
   release_date,
@@ -19,7 +20,13 @@ const MovieItem = ({
     <li className="movie-item" key={key}>
       <div className="movie-item__image">
         <img
-          src={"https://image.tmdb.org/t/p/w200/" + poster_path}
+          src={
+            backdrop_path
+              ? "https://image.tmdb.org/t/p/w200/" + backdrop_path
+              : poster_path
+              ? "https://image.tmdb.org/t/p/w200/" + poster_path
+              : "/questionmark.jpg"
+          }
           alt={title}
           loading="lazy"
         />

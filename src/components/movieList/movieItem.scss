@@ -10,8 +10,8 @@
   }
 }
 .movie-item {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 100px 1fr;
   gap: 10px;
 }
 .movie-item__title {
