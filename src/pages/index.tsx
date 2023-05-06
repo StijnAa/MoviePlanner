@@ -3,7 +3,8 @@ import getUpcomingMovies from "@/utils/getUpcommingMovies";
 import getPlayingMovies from "@/utils/getPlayingMovies";
 
 import Head from "next/head";
-import MovieList from "../components/movieList/movieList";
+import { useState } from "react";
+import MovieList from "@/components/movieList/MovieList";
 
 export default function index({
   upcommingMovies,
@@ -24,7 +25,7 @@ export default function index({
         />
       </Head>
       <div className="container">
-        {/* <MovieList movies={nowPlayingMovies} /> */}
+        {/* <MovieList movies={nowPlayingMovies} dateLine={true} /> */}
         <MovieList movies={upcommingMovies} />
       </div>
     </>
