@@ -46,8 +46,6 @@ const getMovies = async (endpoint: endpoint) => {
     },
   });
 
-  // console.log(call.data.results);
-
   if (call.status === 200) {
     return call.data.results;
   } else {
