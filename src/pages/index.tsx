@@ -24,7 +24,7 @@ export default function index({
         />
       </Head>
       <div className="container">
-        <MovieList movies={nowPlayingMovies} />
+        {/* <MovieList movies={nowPlayingMovies} /> */}
         <MovieList movies={upcommingMovies} />
       </div>
     </>
