@@ -1,30 +1,7 @@
 import Head from "next/head";
-import { useState } from "react";
+import MovieList from "../components/movieList/movieList";
 
-const apiCall = async (
-  data: string,
-  setLoading: (boolean: boolean) => void
-) => {
-  setLoading(true);
-  const res = await fetch("/api/api", {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  setLoading(false);
-  if (res.status === 200) {
-    console.log("Response succeeded!");
-    return res.json();
-  } else {
-    return;
-  }
-};
-
-export default function app() {
+export default function index() {
   return (
     <>
       <Head>
@@ -36,6 +13,9 @@ export default function app() {
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺</text></svg>"
         />
       </Head>
+      <div className="container">
+        <MovieList />
+      </div>
     </>
   );
 }
