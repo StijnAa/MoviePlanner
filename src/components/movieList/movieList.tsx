@@ -27,16 +27,9 @@ const MovieList = () => {
         ])
       );
     }
+
     if (data.collection == "films" && data.fields && data.fields.title) {
-      if (data.fields.premiereDate) {
-        const premiereDate = new Date(data.fields.premiereDate.$date);
-        const today = new Date();
-        const fourWeeksAgo = new Date();
-        fourWeeksAgo.setDate(today.getDate() - 28);
-        if (premiereDate > fourWeeksAgo) {
-          setMovies((prev) => [...prev, data.fields]);
-        }
-      }
+      setMovies((prev) => [...prev, data.fields]);
     }
   }, []);
 
@@ -55,7 +48,6 @@ const MovieList = () => {
   }, []);
 
   const sortedMovies = sortMovies(movies);
-  // const sortedMovies = movies;
 
   return (
     <div className="movie-list__container">
