@@ -1,18 +1,7 @@
-import Movie from "@/types/movie";
-import getUpcomingMovies from "@/utils/getUpcommingMovies";
-import getPlayingMovies from "@/utils/getPlayingMovies";
-
 import Head from "next/head";
-import { useState } from "react";
 import MovieList from "@/components/movieList/MovieList";
 
-export default function index({
-  upcommingMovies,
-  nowPlayingMovies,
-}: {
-  nowPlayingMovies: Movie[];
-  upcommingMovies: Movie[];
-}) {
+export default function index() {
   return (
     <>
       <Head>
@@ -25,21 +14,8 @@ export default function index({
         />
       </Head>
       <div className="container">
-        {/* <MovieList movies={nowPlayingMovies} dateLine={true} /> */}
-        <MovieList movies={upcommingMovies} />
+        <MovieList />
       </div>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const upcommingMovies = await getUpcomingMovies();
-  const nowPlayingMovies = await getPlayingMovies();
-
-  return {
-    props: {
-      upcommingMovies: upcommingMovies,
-      nowPlayingMovies: nowPlayingMovies,
-    },
-  };
 }

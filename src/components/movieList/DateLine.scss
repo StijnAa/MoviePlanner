@@ -10,17 +10,15 @@
 // };
 
 // export default DateLine;
-.date-line__container {
-}
 .date-line {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: left;
   position: relative;
-  transform: translate(-20px, 0px);
+  transform: translate(-20px, -7px);
   width: 110%;
-  height: 6px;
+  height: 10px;
 
   .date-line__line {
     position: absolute;
