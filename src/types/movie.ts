@@ -100,4 +100,6 @@ export default interface Movie {
   tip_in_cities: string[];
   mostVisited?: boolean;
   last_screening_week?: boolean;
+  position?: string;
+  date: number;
 }
