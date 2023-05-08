@@ -48,7 +48,6 @@ const MovieList = () => {
   }, []);
 
   const sortedMovies = sortMovies(movies);
-
   return (
     <div className="movie-list__container">
       <ul className="movie-list">

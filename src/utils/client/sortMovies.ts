@@ -1,18 +1,23 @@
 import Movie from "../../types/movie";
 
+const lastMovieOnThisDate = (movie1: Movie, movie2: Movie) => {
+  return movie1.date === movie2.date;
+};
+
 const filterMovies = (movie: Movie) => {
   const today = new Date();
   const fourWeeksAgo = new Date();
   fourWeeksAgo.setDate(today.getDate() - 18);
-  if (!movie.premiereDate) return;
 
-  const premiereDate = new Date(movie.premiereDate.$date);
+  const premiereDate = movie.date;
 
-  if (premiereDate < fourWeeksAgo) {
+  if (premiereDate < fourWeeksAgo.valueOf()) {
     return;
   }
+
   const cities =
     movie.confirmed_screening_in_cities || movie.screening_in_cities || [];
+
   if (cities.length > 0 && !cities.includes("Amsterdam")) {
     return;
   }
@@ -20,32 +25,45 @@ const filterMovies = (movie: Movie) => {
   return movie;
 };
 
-const sortMovies = (movies: Movie[]) => {
-  const today = new Date();
-  const fourWeeksAgo = new Date();
-  fourWeeksAgo.setDate(today.getDate() - 28);
-
-  movies = movies.filter(filterMovies);
-
-  movies.sort((a: Movie, b: Movie) => {
-    const dateA = a.premiereDate
-      ? new Date(a.premiereDate.$date).valueOf()
-      : new Date("01 Jan 2100 00:00:00 GMT").valueOf();
-    const dateB = b.premiereDate
-      ? new Date(b.premiereDate.$date).valueOf()
-      : new Date("01 Jan 2100 00:00:00 GMT").valueOf();
-    return dateA - dateB;
+const makeBetterDates = (movies: Movie[]) => {
+  movies.forEach((movie) => {
+    if (movie.premiereDate) {
+      movie.date = new Date(
+        new Date(movie.premiereDate.$date).toISOString().split("T")[0]
+      ).valueOf();
+    } else {
+      movie.date = new Date("01 Jan 1900 00:00:00 GMT").valueOf();
+    }
   });
-  console.log(movies);
+
   return movies;
 };
 
-export default sortMovies;
+const sortMovies = (movies: Movie[]) => {
+  const moviesA = makeBetterDates(movies);
+  const moviesB = moviesA.filter(filterMovies);
 
-// if (premiereDate < fourWeeksAgo) {
-//   return;
-// }
-// console.log(data.fields);
-// if (data.fields.confirmed_screening_in_cities > 0) {
-//   return;
-// }
+  moviesB.sort((a: Movie, b: Movie) => {
+    const dateA = a.date;
+    const dateB = b.date;
+
+    return dateA - dateB;
+  });
+
+  for (let i = 0; i < moviesB.length - 1; i++) {
+    if (i === 0) {
+      moviesB[i].position = "start";
+    } else if (lastMovieOnThisDate(moviesB[i], moviesB[i - 1])) {
+      moviesB[i].position = "mid";
+    } else {
+      if (moviesB[i - 1].position == "mid") {
+        moviesB[i - 1].position = "end";
+      }
+      moviesB[i].position = "start";
+    }
+  }
+
+  return moviesB;
+};
+
+export default sortMovies;

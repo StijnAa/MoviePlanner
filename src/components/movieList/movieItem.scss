@@ -1,21 +1,49 @@
 .movie-item__image {
   min-width: 100px;
   height: 100px;
-  border-radius: 5px;
+
   overflow: hidden;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 0px -10px;
   }
 }
 .movie-item {
+  border-radius: 5px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  background-color: antiquewhite;
   display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 10px;
+  grid-template-rows: 100px 98px;
 }
+
+.movie-item__text-content {
+  margin: 10px;
+}
+
+.vertical-line {
+  position: absolute;
+  width: 2px;
+  background-color: #c23f3f;
+}
+.vertical-line--start {
+  transform: translate(-10px, 0);
+  height: 200px;
+}
+.vertical-line--mid {
+  transform: translate(-10px, -16px);
+  height: 232px;
+}
+.vertical-line--end {
+  transform: translate(-10px, 0px);
+  height: 200px;
+}
+
 .movie-item__title {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-kerning: 10px;
   letter-spacing: -0.5px;
 }
