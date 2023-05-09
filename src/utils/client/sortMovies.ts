@@ -1,6 +1,6 @@
 import Movie from "../../types/movie";
 
-const lastMovieOnThisDate = (movie1: Movie, movie2: Movie) => {
+const isEqualToPrev = (movie1: Movie, movie2: Movie) => {
   return movie1.date === movie2.date;
 };
 
@@ -22,6 +22,12 @@ const filterMovies = (movie: Movie) => {
     return;
   }
 
+  const duration = movie.duration || 1000;
+
+  if (duration < 60) {
+    return;
+  }
+
   return movie;
 };
 
@@ -39,7 +45,7 @@ const makeBetterDates = (movies: Movie[]) => {
   return movies;
 };
 
-const sortMovies = (movies: Movie[]) => {
+const sortMoviesToGroups = (movies: Movie[]) => {
   const moviesA = makeBetterDates(movies);
   const moviesB = moviesA.filter(filterMovies);
 
@@ -50,20 +56,25 @@ const sortMovies = (movies: Movie[]) => {
     return dateA - dateB;
   });
 
+  const groupOfMovies = [];
+  let group = [];
+
   for (let i = 0; i < moviesB.length - 1; i++) {
     if (i === 0) {
-      moviesB[i].position = "start";
-    } else if (lastMovieOnThisDate(moviesB[i], moviesB[i - 1])) {
-      moviesB[i].position = "mid";
+      group.push(moviesB[i]);
+    } else if (isEqualToPrev(moviesB[i], moviesB[i - 1])) {
+      group.push(moviesB[i]);
     } else {
-      if (moviesB[i - 1].position == "mid") {
-        moviesB[i - 1].position = "end";
-      }
-      moviesB[i].position = "start";
+      groupOfMovies.push(group);
+      group = [];
+      group.push(moviesB[i]);
+    }
+    if (i === moviesB.length - 1) {
+      groupOfMovies.push(group);
     }
   }
-
-  return moviesB;
+  // console.log(groupOfMovies);
+  return groupOfMovies;
 };
 
-export default sortMovies;
+export default sortMoviesToGroups;

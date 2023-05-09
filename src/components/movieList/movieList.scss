@@ -1,7 +1,32 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.movie-groups {
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  grid-gap: 5px;
+}
+.movie-group__container {
+  margin: 11px;
+  li {
+    list-style: none;
+  }
+}
+
+.movie-group__date {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+}
+
 .movie-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 10px 10px 10px 35px;
+  gap: 5px;
+  padding: 0 0 0 35px;
   list-style-type: none;
 }

@@ -4,6 +4,7 @@ import React from "react";
 import Movie from "../../types/movie";
 import _ from "lodash";
 import cx from "classnames";
+import Image from "next/image";
 
 function convertToPlain(html) {
   // Create a new div element
@@ -23,37 +24,28 @@ const MovieItem = ({
   external_id,
   teaser,
   position,
+  slug,
+  imageSrc,
 }: Movie) => {
   const day = new Date(date).getDate();
   const month = new Date(date).getMonth() + 1;
   const year = new Date(date).getFullYear();
   const dateString = `${day}-${month}-${year}`;
 
-  if (
-    (image && image.startsWith("sites/")) ||
-    (image && image.startsWith("filmstills/"))
-  ) {
-    image = `https://www.cineville.nl/${image}`;
-  }
-  console.log(title, " : ", external_id);
-
   return (
-    <div className="movie-item">
+    <a className="movie-item" href={"https://www.cineville.nl/films/" + slug}>
       <div className={cx("vertical-line", "vertical-line--" + position)} />
       <div className="movie-item__image">
-        <img src={image ? image : "/questionmark.jpg"} alt={title} />
+        <Image src={image} alt={title} width={500} height={500} />
       </div>
       <div className="movie-item__text-content">
         <h2 className="movie-item__title">{title}</h2>
 
         <p className="movie-item__overview">
-          {teaser &&
-            _.truncate(convertToPlain(teaser), {
-              length: 80,
-            })}
+          {teaser && convertToPlain(teaser)}
         </p>
       </div>
-    </div>
+    </a>
   );
 };
 

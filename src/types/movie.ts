@@ -102,4 +102,5 @@ export default interface Movie {
   last_screening_week?: boolean;
   position?: string;
   date: number;
+  imageSrc: string;
 }

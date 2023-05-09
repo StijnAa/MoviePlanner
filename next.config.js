@@ -8,6 +8,13 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: [
+      "cineville-filmformatie.s3-eu-west-1.amazonaws.com",
+      "www.cineville.nl",
+    ],
+    formats: ["image/webp"],
+  },
 };
 
 module.exports = nextConfig;
