@@ -6,7 +6,7 @@ import _ from "lodash";
 import cx from "classnames";
 import Image from "next/image";
 
-function convertToPlain(html) {
+function convertToPlain(html: any) {
   // Create a new div element
   var tempDivElement = document.createElement("div");
 

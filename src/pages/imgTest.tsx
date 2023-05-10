@@ -1,6 +1,6 @@
 import Head from "next/head";
 import MovieList from "@/components/movieList/MovieList";
-import MovieGroups from "@/components/movieList/MovieGroups";
+import MovieGroups from "@/components/movieGroups/MovieGroups";
 import Image from "next/image";
 import TestImage from "@/components/movieList/imgTest/imgTest";
 

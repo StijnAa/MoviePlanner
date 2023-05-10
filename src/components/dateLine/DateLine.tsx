@@ -2,10 +2,10 @@
 
 const DateLine = () => {
   return (
-    <div className="date-line">
+    <li className="date-line">
       <div className="date-line__line"></div>
       <div className="date-line__circle"></div>
-    </div>
+    </li>
   );
 };
 

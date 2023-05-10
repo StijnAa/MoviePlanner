@@ -1,9 +1,9 @@
-users:[{
-	name:Stijn
-	group:[{	
-		id:abc123,
-		movies:[a,b,c,d,e,f,g]
-		}]
-
-}]
-groups:[{id:abc123, users:[Stijn,Cas,Jakob]}]
+{
+  "users": [
+    {
+      "name": "Stijn",
+      "friends": ["Jan", "Piet", "Joris", "Korneel"],
+      "movies": ["a", "b", "c", "d", "e", "f", "g"]
+    }
+  ]
+}

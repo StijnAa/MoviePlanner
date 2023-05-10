@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Movie from "../../types/movie";
-import DateLine from "./DateLine";
-import getFirstMovieAfterTodayIndex from "@/utils/client/getFirstMovieAfterTodayIndex";
-import sortMoviesToGroups from "@/utils/client/sortMovies";
+import DateLine from "../dateLine/DateLine";
+import getIndexOfFirstGroupAfterToday from "../../utils/client/getIndexOfFirstGroupAfterToday";
+import moviesToGroups from "@/utils/client/moviesToGroups";
 import { useCallback } from "react";
-import MovieList from "./MovieList";
+import MovieList from "../movieList/MovieList";
 
 const MovieGroups = () => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
@@ -71,8 +71,8 @@ const MovieGroups = () => {
     };
   }, []);
 
-  const groups = sortMoviesToGroups(movies);
-  //   console.log(groups);
+  const groups = moviesToGroups(movies);
+
   return (
     <ul className="movie-groups">
       {groups.length > 0 &&
@@ -86,8 +86,9 @@ const MovieGroups = () => {
                   {monthNames[date.getMonth()]}
                 </div>
               </div>
-
-              <MovieList group={group} />
+              <MovieList group={group}>
+                {i === getIndexOfFirstGroupAfterToday(groups) && <DateLine />}
+              </MovieList>
             </>
           );
         })}
