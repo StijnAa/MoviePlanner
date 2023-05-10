@@ -6,11 +6,9 @@ import moviesToGroups from "@/utils/client/moviesToGroups";
 import { useCallback } from "react";
 import MovieList from "../movieList/MovieList";
 import Views from "../../types/views";
-import filterView from "@/utils/client/filterView";
 
 const MovieGroups = ({ view }: { view: Views }) => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
-  const [groups, setGroups] = useState<Array<Movie[]>>([]);
 
   const getData = (msg: string) => {
     return JSON.parse(JSON.parse(msg.slice(1))[0]);
@@ -75,9 +73,7 @@ const MovieGroups = ({ view }: { view: Views }) => {
     };
   }, []);
 
-  useEffect(() => {
-    setGroups(filterView(moviesToGroups(movies), view));
-  }, [movies, view]);
+  const groups = moviesToGroups(movies);
 
   return (
     <ul className="movie-groups">
@@ -92,8 +88,9 @@ const MovieGroups = ({ view }: { view: Views }) => {
                   {monthNames[date.getMonth()]}
                 </div>
               </div>
-              <MovieList group={group}>
-                {i === getIndexOfFirstGroupAfterToday(groups) && <DateLine />}
+              <MovieList group={group} view={view}>
+                {i === getIndexOfFirstGroupAfterToday(groups) &&
+                  view !== "removed" && <DateLine />}
               </MovieList>
             </div>
           );

@@ -33,7 +33,12 @@ const MovieItem = ({
   const dateString = `${day}-${month}-${year}`;
 
   return (
-    <a className="movie-item" href={"https://www.cineville.nl/films/" + slug}>
+    <a
+      className="movie-item"
+      href={"https://www.cineville.nl/films/" + slug}
+      target="_blank"
+      rel="noreferrer"
+    >
       <div className={cx("vertical-line", "vertical-line--" + position)} />
       <div className="movie-item__image">
         <Image src={image} alt={title} width={500} height={500} />

@@ -11,6 +11,10 @@
   grid-gap: 5px;
   margin-bottom: 18px;
 }
+.movie-group:not(:has(.movie-item__container)) {
+  display: none;
+}
+
 .movie-group__container {
   margin: 11px;
   li {
