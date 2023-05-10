@@ -1,14 +1,15 @@
 .container {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 10px;
+  margin: auto;
+  flex-direction: column;
+  max-width: 400px;
+  padding: 0 18px;
 }
 
-.movie-groups {
-  max-width: 400px;
+.movie-group {
   display: grid;
-  grid-template-columns: 10px 1fr;
+  grid-template-columns: 35px 1fr;
   grid-gap: 5px;
+  margin-bottom: 18px;
 }
 .movie-group__container {
   margin: 11px;
@@ -21,4 +22,5 @@
   position: sticky;
   top: 1rem;
   align-self: start;
+  margin-top: 8px;
 }

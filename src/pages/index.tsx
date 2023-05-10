@@ -1,7 +1,11 @@
 import Head from "next/head";
 import MovieGroups from "@/components/movieGroups/MovieGroups";
+import { useState } from "react";
+import Navigations from "../components/nav/nav";
+import views from "../types/views";
 
-export default function index() {
+export default function Index() {
+  const [view, setView] = useState<views>("all");
   return (
     <>
       <Head>
@@ -14,7 +18,13 @@ export default function index() {
         />
       </Head>
       <div className="container">
-        <MovieGroups />
+        <Navigations
+          view={view}
+          onClickAll={() => setView("all")}
+          onClickMy={() => setView("my-list")}
+          onClickRemoved={() => setView("removed")}
+        />
+        <MovieGroups view={view} />
       </div>
     </>
   );

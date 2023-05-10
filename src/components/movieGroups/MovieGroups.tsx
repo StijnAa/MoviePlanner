@@ -5,9 +5,12 @@ import getIndexOfFirstGroupAfterToday from "../../utils/client/getIndexOfFirstGr
 import moviesToGroups from "@/utils/client/moviesToGroups";
 import { useCallback } from "react";
 import MovieList from "../movieList/MovieList";
+import Views from "../../types/views";
+import filterView from "@/utils/client/filterView";
 
-const MovieGroups = () => {
+const MovieGroups = ({ view }: { view: Views }) => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
+  const [groups, setGroups] = useState<Array<Movie[]>>([]);
 
   const getData = (msg: string) => {
     return JSON.parse(JSON.parse(msg.slice(1))[0]);
@@ -44,8 +47,9 @@ const MovieGroups = () => {
     }
 
     if (data.collection == "films" && data.fields && data.fields.title) {
-      data.fields.imageSrc =
-        data.fields.image.split("/").pop() || "qeustionmark.jpg";
+      data.fields.imageSrc = data.fields.image
+        ? data.fields.image.split("/").pop()
+        : "questionmark.jpg";
       if (
         (data.fields.image && data.fields.image.startsWith("sites/")) ||
         (data.fields.image && data.fields.image.startsWith("filmstills/"))
@@ -71,7 +75,9 @@ const MovieGroups = () => {
     };
   }, []);
 
-  const groups = moviesToGroups(movies);
+  useEffect(() => {
+    setGroups(filterView(moviesToGroups(movies), view));
+  }, [movies, view]);
 
   return (
     <ul className="movie-groups">
@@ -79,7 +85,7 @@ const MovieGroups = () => {
         groups.map((group: Movie[], i) => {
           const date = new Date(group[0].date);
           return (
-            <>
+            <div className="movie-group" key={i}>
               <div className="movie-group__date">
                 <div className="movie-group__date-month">{date.getDate()}</div>
                 <div className="movie-group__date-day">
@@ -89,7 +95,7 @@ const MovieGroups = () => {
               <MovieList group={group}>
                 {i === getIndexOfFirstGroupAfterToday(groups) && <DateLine />}
               </MovieList>
-            </>
+            </div>
           );
         })}
     </ul>

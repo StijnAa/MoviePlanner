@@ -1,9 +1,6 @@
 {
-  "users": [
-    {
-      "name": "Stijn",
-      "friends": ["Jan", "Piet", "Joris", "Korneel"],
-      "movies": ["a", "b", "c", "d", "e", "f", "g"]
-    }
-  ]
+  "name": "Stijn",
+  "friends": ["Jan", "Piet", "Joris", "Korneel"],
+  "watchlist": [71673, 74085, 61115, 69225, 77801, 71673, 74085],
+  "skiplist": [61115, 69225, 77801, 71673, 61115, 69225, 77801]
 }
