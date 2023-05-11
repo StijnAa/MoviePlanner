@@ -8,7 +8,7 @@ export default function groupMoviesByDate(movies: Movie[]) {
   const groupOfMovies = [];
   let group = [];
 
-  for (let i = 0; i < movies.length - 1; i++) {
+  for (let i = 0; i <= movies.length - 1; i++) {
     if (i === 0) {
       group.push(movies[i]);
     } else if (isEqualToPrev(movies[i], movies[i - 1])) {
@@ -19,6 +19,7 @@ export default function groupMoviesByDate(movies: Movie[]) {
       group.push(movies[i]);
     }
     if (i === movies.length - 1) {
+      console.log(group);
       groupOfMovies.push(group);
     }
   }

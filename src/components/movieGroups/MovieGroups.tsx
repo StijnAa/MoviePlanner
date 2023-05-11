@@ -80,7 +80,6 @@ const MovieGroups = ({ view }: { view: Views }) => {
       {groups.length > 0 &&
         groups.map((group: Movie[], i) => {
           const date = new Date(group[0].date);
-          console.log(group[0]);
           return (
             <>
               <div className="movie-group__date" key={i}>
