@@ -5,13 +5,17 @@
   padding: 0 18px;
 }
 
-.movie-group {
+.movie-groups {
   display: grid;
   grid-template-columns: 35px 1fr;
   grid-gap: 5px;
   margin-bottom: 18px;
 }
-.movie-group:not(:has(.movie-item__container)) {
+
+.movie-list:empty {
+  display: none;
+}
+.movie-group__date:has(+ .movie-list:empty) {
   display: none;
 }
 

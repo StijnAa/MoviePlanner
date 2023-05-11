@@ -8,7 +8,6 @@ const oldMovie = (movie: Movie) => {
 
   const premiereDate = movie.date;
   if (premiereDate < fourWeeksAgo.valueOf()) {
-    console.log(movie.title);
     return true;
   } else {
     return false;

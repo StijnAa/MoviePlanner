@@ -80,9 +80,10 @@ const MovieGroups = ({ view }: { view: Views }) => {
       {groups.length > 0 &&
         groups.map((group: Movie[], i) => {
           const date = new Date(group[0].date);
+          console.log(group[0]);
           return (
-            <div className="movie-group" key={i}>
-              <div className="movie-group__date">
+            <>
+              <div className="movie-group__date" key={i}>
                 <div className="movie-group__date-month">{date.getDate()}</div>
                 <div className="movie-group__date-day">
                   {monthNames[date.getMonth()]}
@@ -92,7 +93,7 @@ const MovieGroups = ({ view }: { view: Views }) => {
                 {i === getIndexOfFirstGroupAfterToday(groups) &&
                   view !== "removed" && <DateLine />}
               </MovieList>
-            </div>
+            </>
           );
         })}
     </ul>

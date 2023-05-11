@@ -14,7 +14,11 @@ function convertToPlain(html: any) {
   tempDivElement.innerHTML = html;
 
   // Retrieve the text property of the element
-  return tempDivElement.textContent || tempDivElement.innerText || "";
+  return (
+    tempDivElement.textContent?.replace("/", " / ") ||
+    tempDivElement.innerText.replace("/", " / ") ||
+    ""
+  );
 }
 
 const MovieItem = ({
