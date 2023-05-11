@@ -3,38 +3,41 @@ import cx from "classnames";
 
 type NavigationProps = {
   view: Views;
-  onClickMy: () => void;
-  onClickAll: () => void;
-  onClickRemoved: () => void;
+  onClick: () => void;
 };
 
-const Navigations = ({
-  view,
-  onClickMy,
-  onClickAll,
-  onClickRemoved,
-}: NavigationProps) => {
+const Navigations = ({ view, onClick }: NavigationProps) => {
   return (
     <div className="view-switch">
       <div className="view-switch__ham"></div>
       <div className="view-switch__menu">
         <button
           className={cx("view-switch__button", view === "all" && "active")}
-          onClick={onClickAll}
+          value="all"
+          onClick={onClick}
         >
           Alle Films
         </button>
         <button
           className={cx("view-switch__button", view === "my-list" && "active")}
-          onClick={onClickMy}
+          value="my-list"
+          onClick={onClick}
         >
           Mijn Lijst
         </button>
         <button
           className={cx("view-switch__button", view === "removed" && "active")}
-          onClick={onClickRemoved}
+          value="removed"
+          onClick={onClick}
         >
           Verwijdert
+        </button>
+        <button
+          className={cx("view-switch__button", view === "old" && "active")}
+          value="old"
+          onClick={onClick}
+        >
+          Oude Films
         </button>
       </div>
     </div>

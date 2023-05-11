@@ -20,9 +20,7 @@ export default function Index() {
       <div className="container">
         <Navigations
           view={view}
-          onClickAll={() => setView("all")}
-          onClickMy={() => setView("my-list")}
-          onClickRemoved={() => setView("removed")}
+          onClick={(e) => setView(e.target.value as views)}
         />
         <MovieGroups view={view} />
       </div>
