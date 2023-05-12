@@ -20,15 +20,17 @@
   color: white;
   outline: none;
   cursor: pointer;
+  text-underline-offset: 2px;
   &.active {
-    background-color: #c23f3f;
+    background-color: #b43a3a;
+
+    text-decoration: underline;
   }
 
   // nice hover effect with underline animation:
   &:hover {
+    background-color: #b43a3a;
     text-decoration: underline;
-    text-underline-offset: 2px;
-    background-color: #e6a4a4;
     transition: all 0.2s ease-in-out;
   }
 }

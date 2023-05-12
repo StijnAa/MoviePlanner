@@ -5,7 +5,7 @@ import Navigations from "../components/nav/nav";
 import views from "../types/views";
 
 export default function Index() {
-  const [view, setView] = useState<views>("all");
+  const [view, setView] = useState<views>("my-list");
   return (
     <>
       <Head>
