@@ -1,8 +1,8 @@
-// simple react component that renders a line acros the screen
+import { RefObject, useEffect, useRef } from "react";
 
-const DateLine = () => {
+const DateLine = ({ ref }: { ref: RefObject<HTMLLIElement> }) => {
   return (
-    <li className="date-line">
+    <li className="date-line" ref={ref}>
       <p>nu in de bioscoop</p>
       <div className="date-line__line"></div>
       <p>binnenkort in de bioscoop</p>

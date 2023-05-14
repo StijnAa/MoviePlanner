@@ -1,14 +1,21 @@
-const sticky = () => {
+const Sticky = () => {
   return (
-    <div className="big-list">
-      <div className="sticky-date">12 maart</div>
-      <div className="content-block">block of content</div>
-      <div className="sticky-date">12 maart</div>
-      <div className="content-block">block of content</div>
-      <div className="sticky-date">12 maart</div>
-      <div className="content-block">block of content</div>
-    </div>
+    <section className="section">
+      <h2 className="section__headline">Design</h2>
+      <div className="team-listing">
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </div>
+    </section>
   );
 };
 
-export default sticky;
+export default Sticky;

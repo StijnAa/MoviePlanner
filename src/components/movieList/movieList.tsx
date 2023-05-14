@@ -1,10 +1,4 @@
-import React, {
-  ReactComponentElement,
-  ReactElement,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement } from "react";
 import MovieItem from "../movieItem/MovieItem";
 import Movie from "../../types/movie";
 import filterView from "@/utils/client/filterView";

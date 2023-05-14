@@ -30,7 +30,7 @@ const Navigations = ({ view, onClick }: NavigationProps) => {
           value="removed"
           onClick={onClick}
         >
-          Verwijdert
+          Verwijderd
         </button>
         <button
           className={cx("view-switch__button", view === "old" && "active")}
