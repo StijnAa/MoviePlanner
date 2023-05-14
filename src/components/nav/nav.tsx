@@ -1,46 +1,28 @@
-import Views from "@/types/views";
 import cx from "classnames";
+import Link from "next/link";
 
 type NavigationProps = {
-  view: Views;
-  onClick: () => void;
+  page: string;
 };
 
-const Navigations = ({ view, onClick }: NavigationProps) => {
+const Navigation = ({ page }: NavigationProps) => {
   return (
-    <div className="view-switch">
-      <div className="view-switch__ham"></div>
-      <div className="view-switch__menu">
-        <button
-          className={cx("view-switch__button", view === "all" && "active")}
-          value="all"
-          onClick={onClick}
+    <div className="navigation">
+      <div className="navigation__menu">
+        <Link
+          className={cx("navigation__link", page === "movies" && "active")}
+          href="/"
         >
-          Alle Films
-        </button>
-        <button
-          className={cx("view-switch__button", view === "my-list" && "active")}
-          value="my-list"
-          onClick={onClick}
+          Films
+        </Link>
+        <Link
+          className={cx("navigation__link", page === "account" && "active")}
+          href="/account"
         >
-          Mijn Lijst
-        </button>
-        <button
-          className={cx("view-switch__button", view === "removed" && "active")}
-          value="removed"
-          onClick={onClick}
-        >
-          Verwijderd
-        </button>
-        <button
-          className={cx("view-switch__button", view === "old" && "active")}
-          value="old"
-          onClick={onClick}
-        >
-          Oude Films
-        </button>
+          Account
+        </Link>
       </div>
     </div>
   );
 };
-export default Navigations;
+export default Navigation;

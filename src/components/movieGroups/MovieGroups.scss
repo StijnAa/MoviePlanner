@@ -32,3 +32,15 @@
   align-self: start;
   margin-top: 8px;
 }
+
+.movie-group__date-month--loading {
+  background-color: rgb(237, 237, 237);
+  width: 34px;
+  height: 14px;
+  margin-bottom: 5px;
+}
+.movie-group__date-day--loading {
+  background-color: rgb(237, 237, 237);
+  width: 20px;
+  height: 14px;
+}

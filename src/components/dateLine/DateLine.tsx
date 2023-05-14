@@ -1,8 +1,8 @@
 import { RefObject, useEffect, useRef } from "react";
 
-const DateLine = ({ ref }: { ref: RefObject<HTMLLIElement> }) => {
+const DateLine = () => {
   return (
-    <li className="date-line" ref={ref}>
+    <li className="date-line">
       <p>nu in de bioscoop</p>
       <div className="date-line__line"></div>
       <p>binnenkort in de bioscoop</p>

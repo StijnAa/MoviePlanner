@@ -6,6 +6,7 @@ import moviesToGroups from "@/utils/client/moviesToGroups";
 import { useCallback } from "react";
 import MovieList from "../movieList/MovieList";
 import Views from "../../types/views";
+import LoadingItem from "../movieItem/LoadingItem";
 
 const MovieGroups = ({ view }: { view: Views }) => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
@@ -74,7 +75,7 @@ const MovieGroups = ({ view }: { view: Views }) => {
   }, []);
 
   const groups = moviesToGroups(movies);
-
+  const index = getIndexOfFirstGroupAfterToday(groups);
   return (
     <ul className="movie-groups">
       {groups.length > 0 &&
@@ -89,12 +90,29 @@ const MovieGroups = ({ view }: { view: Views }) => {
                 </div>
               </div>
               <MovieList group={group} view={view}>
-                {i === getIndexOfFirstGroupAfterToday(groups) &&
-                  view !== "removed" && <DateLine ref={ref} />}
+                {i === index && view !== "removed" && <DateLine />}
               </MovieList>
             </div>
           );
         })}
+      {groups.length == 0 && (
+        <div className="movie-group">
+          <div className="movie-group__date">
+            <div className="movie-group__date-month--loading" />
+            <div className="movie-group__date-day--loading" />
+          </div>
+          <ul className="movie-list movie-list--loading">
+            <li className="movie-item__container">
+              <LoadingItem />
+              <LoadingItem />
+
+              <LoadingItem />
+
+              <LoadingItem />
+            </li>
+          </ul>
+        </div>
+      )}
     </ul>
   );
 };

@@ -18,7 +18,6 @@ const MovieList = ({
       {children}
       {group.length > 0 &&
         group.map((movie: Movie, i) => {
-          movie.external_id == 78924 && console.log("skot");
           if (!filterView(movie, view)) return null;
           return (
             <li key={i} className="movie-item__container">

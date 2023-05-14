@@ -45,7 +45,6 @@ const MovieItem = ({
       target="_blank"
       rel="noreferrer"
     >
-      <div className={cx("vertical-line", "vertical-line--" + position)} />
       <div className="movie-item__image">
         <Image src={image} alt={title} width={500} height={500} />
       </div>
