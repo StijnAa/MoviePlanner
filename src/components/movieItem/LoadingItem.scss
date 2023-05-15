@@ -3,14 +3,14 @@
   background-color: rgb(237, 237, 237);
 }
 
-.movie-item__text-content {
-  margin: 8px 0;
+.movie-item__text-content--loading {
+  margin: 16px 0 22px 0;
 }
 .movie-item__overview--loading {
   width: 100%;
   height: 6rem;
   background-color: rgb(237, 237, 237);
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 .movie-item__title--loading {

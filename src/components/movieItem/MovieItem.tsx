@@ -1,10 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-
 import React from "react";
 import Movie from "../../types/movie";
 import _ from "lodash";
 import cx from "classnames";
 import Image from "next/image";
+import { Avatar, AvatarBadge, AvatarGroup, Stack } from "@chakra-ui/react";
 
 function convertToPlain(html: any) {
   // Create a new div element
@@ -39,23 +38,35 @@ const MovieItem = ({
   const dateString = `${day}-${month}-${year}`;
 
   return (
-    <a
-      className="movie-item"
-      href={"https://www.cineville.nl/films/" + slug}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <div className="movie-item__image">
-        <Image src={image} alt={title} width={500} height={500} />
-      </div>
-      <div className="movie-item__text-content">
-        <h2 className="movie-item__title">{title}</h2>
+    <div className="movie-item">
+      <a
+        href={"https://www.cineville.nl/films/" + slug}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div className="movie-item__image">
+          <Image src={image} alt={title} width={500} height={500} />
+        </div>
+        <div className="movie-item__text-content">
+          <h2 className="movie-item__title">{title}</h2>
 
-        <p className="movie-item__overview">
-          {teaser && convertToPlain(teaser)}
-        </p>
+          <p className="movie-item__overview">
+            {teaser && convertToPlain(teaser)}
+          </p>
+        </div>
+      </a>
+      <div className="movie-item__social-data">
+        <div className="movie-item__friends"></div>
+        <div className="movie-item__filter-buttons">
+          <button className="movie-item__filter-button movie-item__filter-button--plus">
+            +
+          </button>
+          <button className="movie-item__filter-button movie-item__filter-button--minus">
+            -
+          </button>
+        </div>
       </div>
-    </a>
+    </div>
   );
 };
 

@@ -102,7 +102,7 @@ const MovieGroups = ({ view }: { view: Views }) => {
             <div className="movie-group__date-day--loading" />
           </div>
           <ul className="movie-list movie-list--loading">
-            <li className="movie-item__container">
+            <li className="movie-item__container--loading">
               <LoadingItem />
               <LoadingItem />
 
