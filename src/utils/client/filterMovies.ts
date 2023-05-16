@@ -1,7 +1,6 @@
 import Movie from "@/types/movie";
 
 export default function filterMovies(movie: Movie) {
-  movie.external_id == 78924 && console.log(movie);
   // filte by city
   const cities =
     movie.confirmed_screening_in_cities || movie.screening_in_cities || [];

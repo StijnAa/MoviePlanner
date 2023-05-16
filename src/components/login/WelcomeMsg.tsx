@@ -1,4 +1,5 @@
 import { getAuth } from "firebase/auth";
+import Image from "next/image";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const WelcomeMsg = () => {
@@ -7,6 +8,16 @@ const WelcomeMsg = () => {
   const loggedIn = (
     <>
       <h2>Welkom terug,</h2>
+      {user?.photoURL && (
+        <div className="welkom-msg__image-container">
+          <Image
+            src={user?.photoURL}
+            alt="user profile picture"
+            width={200}
+            height={200}
+          />
+        </div>
+      )}
       <p>{user?.displayName}</p>
     </>
   );

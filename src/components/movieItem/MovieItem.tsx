@@ -11,8 +11,6 @@ function convertToPlain(html: any) {
 
   // Set the HTML content with the given value
   tempDivElement.innerHTML = html;
-  console.log(html);
-  console.log(tempDivElement.textContent?.replaceAll("/", " / "));
 
   // Retrieve the text property of the element
   return (

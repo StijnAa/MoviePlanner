@@ -5,7 +5,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 const LogIn = () => {
   const app = initFirebase();
-  console.log(app);
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);

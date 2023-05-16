@@ -19,7 +19,6 @@ export default function groupMoviesByDate(movies: Movie[]) {
       group.push(movies[i]);
     }
     if (i === movies.length - 1) {
-      console.log(group);
       groupOfMovies.push(group);
     }
   }

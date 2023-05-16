@@ -12,6 +12,8 @@ const nextConfig = {
     domains: [
       "cineville-filmformatie.s3-eu-west-1.amazonaws.com",
       "www.cineville.nl",
+      "lh3.googleusercontent.com",
+      "via.placeholder.com",
     ],
     formats: ["image/webp"],
   },
