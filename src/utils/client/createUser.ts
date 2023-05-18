@@ -7,6 +7,7 @@ export default async function createUser(authUser: any) {
   const docRef = doc(db, "users", authUser.uid);
 
   const newUserData = {
+    uid: authUser.uid,
     name: authUser.displayName,
     friends: [authUser.uid],
     friendRequests: [],

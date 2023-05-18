@@ -19,7 +19,7 @@ export default function Index() {
       </Head>
       <main className="container">
         <Navigation page="movies" />
-        <MovieGroups view={view} />
+        <MovieGroups />
       </main>
     </>
   );

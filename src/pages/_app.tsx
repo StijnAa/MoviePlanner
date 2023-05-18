@@ -9,15 +9,10 @@ import getUser from "@/utils/client/getUser";
 import createUser from "@/utils/client/createUser";
 import userReducer, { initialState } from "@/state/userReducer";
 import { UserContext } from "@/state/userContext";
-
-const getUserData = async (authUser: UserInfo) => {
-  console.log(authUser);
-  let userData = await getUser(authUser.uid);
-  if (!userData) {
-    userData = await createUser(authUser);
-  }
-  return userData;
-};
+import getFriendsData from "@/utils/client/getFriendsData";
+import getOrCreateUser from "@/utils/client/getOrCreateUser";
+import addMovieToWatchlistFirebase from "@/utils/client/toggleMovieInFirebase";
+import toggleMovieInFirebase from "@/utils/client/toggleMovieInFirebase";
 
 export default function App({ Component, pageProps }: AppProps) {
   initFirebase();
@@ -26,13 +21,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
-  const setUser = async (userData: any) => {
-    console.log("setUser", userData);
+  const setUser = async (user: UserInfo) => {
+    const userData = await getOrCreateUser(user);
+    const friendsData = await getFriendsData(userData.friends);
 
     dispatch({
       type: "SET_USER",
       payload: {
         user: userData,
+        friends: friendsData,
       },
     });
   };
@@ -42,6 +39,21 @@ export default function App({ Component, pageProps }: AppProps) {
       type: "SET_USER",
       payload: {
         user: initialState.user,
+        friends: initialState.friends,
+      },
+    });
+  };
+
+  const toggleMovie = async (
+    list: "watchlist" | "skiplist",
+    movieId: number
+  ) => {
+    toggleMovieInFirebase(state.user.uid, list, movieId);
+    dispatch({
+      type: "TOGGLE_MOVIE",
+      payload: {
+        movie: movieId,
+        list: list,
       },
     });
   };
@@ -50,18 +62,17 @@ export default function App({ Component, pageProps }: AppProps) {
     ...state,
     setUser,
     removeUser,
+    toggleMovie,
   };
 
   useEffect(() => {
     if (user) {
-      getUserData(user).then((userData) => {
-        setUser(userData);
-      });
+      setUser(user);
     } else {
       removeUser();
     }
   }, [user]);
-
+  console.log(state.user);
   return (
     <UserContext.Provider value={value}>
       <Component {...pageProps} />

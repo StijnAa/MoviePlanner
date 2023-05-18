@@ -13,7 +13,6 @@ const LogIn = () => {
 
   const signIn = async () => {
     const result = await signInWithPopup(auth, provider);
-    console.log(result.user);
   };
   const signOut = () => {
     auth.signOut();

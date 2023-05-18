@@ -1,14 +1,11 @@
 import React, { ReactElement } from "react";
 import MovieItem from "../movieItem/MovieItem";
 import Movie from "../../types/movie";
-import Views from "@/types/views";
-import FriendsList from "../login/FriendsList";
 
 const MovieList = ({
   group,
   children,
 }: {
-  view: Views;
   group: Movie[];
   children: ReactElement | false;
 }) => {

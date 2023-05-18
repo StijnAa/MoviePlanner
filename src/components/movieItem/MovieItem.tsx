@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Movie from "../../types/movie";
 import _ from "lodash";
 import Image from "next/image";
+import { UserContext } from "@/state/userContext";
+import cx from "classnames";
 
 function convertToPlain(html: any) {
   // Create a new div element
@@ -18,9 +20,6 @@ function convertToPlain(html: any) {
   );
 }
 
-const handleAddToWatchlist = () => {};
-const handleAddToSkipList = () => {};
-
 const MovieItem = ({
   image,
   title,
@@ -29,10 +28,22 @@ const MovieItem = ({
   teaser,
   slug,
 }: Movie) => {
-  const day = new Date(date).getDate();
-  const month = new Date(date).getMonth() + 1;
-  const year = new Date(date).getFullYear();
-  const dateString = `${day}-${month}-${year}`;
+  const { toggleMovie, user }: any = useContext(UserContext);
+
+  const handleAddToWatchlist = () => {
+    if (user.name) {
+      toggleMovie("watchlist", external_id);
+    } else {
+      alert("Je moet ingelogd zijn om films toe te voegen aan je watchlist");
+    }
+  };
+  const handleAddToSkipList = () => {
+    if (user.name) {
+      toggleMovie("skiplist", external_id);
+    } else {
+      alert("Je moet ingelogd zijn om films toe te voegen aan je skiplist");
+    }
+  };
 
   return (
     <div className="movie-item">
@@ -55,10 +66,24 @@ const MovieItem = ({
       <div className="movie-item__social-data">
         <div className="movie-item__friends"></div>
         <div className="movie-item__filter-buttons">
-          <button className="movie-item__filter-button movie-item__filter-button--plus">
+          <button
+            className={cx(
+              "movie-item__filter-button movie-item__filter-button--plus",
+              user.watchlist.includes(external_id) && "active"
+            )}
+            disabled={!user.name}
+            onClick={handleAddToWatchlist}
+          >
             +
           </button>
-          <button className="movie-item__filter-button movie-item__filter-button--minus">
+          <button
+            className={cx(
+              "movie-item__filter-button movie-item__filter-button--minus",
+              user.skiplist.includes(external_id) && "active"
+            )}
+            disabled={!user.name}
+            onClick={handleAddToSkipList}
+          >
             -
           </button>
         </div>

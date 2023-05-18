@@ -8,7 +8,7 @@ import MovieList from "../movieList/MovieList";
 import Views from "../../types/views";
 import LoadingItem from "../movieItem/LoadingItem";
 
-const MovieGroups = ({ view }: { view: Views }) => {
+const MovieGroups = () => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
 
   const getData = (msg: string) => {
@@ -89,8 +89,9 @@ const MovieGroups = ({ view }: { view: Views }) => {
                   {monthNames[date.getMonth()]}
                 </div>
               </div>
-              <MovieList group={group} view={view}>
-                {i === index && view !== "removed" && <DateLine />}
+              <MovieList group={group}>
+                {/* {i === index && view !== "removed" && <DateLine />} */}
+                <div></div>
               </MovieList>
             </div>
           );

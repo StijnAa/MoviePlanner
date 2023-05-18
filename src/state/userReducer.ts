@@ -8,26 +8,38 @@ export const initialState = {
     skiplist: [],
     name: undefined,
   },
+  friends: [],
 };
 
-const userReducer = (state, action) => {
+const userReducer = (state: any, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "SET_USER":
-      console.log("SET_USER", payload);
-
+    case "SET_USER": {
       return {
         ...state,
         user: payload.user,
+        friends: payload.friends,
       };
-    // case "ADD_TO_WATCHLIST":
-    //   console.log("ADD_TO_WATCHLIST", payload);
+    }
+    case "TOGGLE_MOVIE": {
+      const user = state.user;
+      console.log("TOGGLE_MOVIE", user[payload.list].includes(payload.movie));
+      if (user[payload.list].includes(payload.movie)) {
+        const list = user[payload.list].filter(
+          (movie: any) => movie !== payload.movie
+        );
+        user[payload.list] = list;
+      } else {
+        user[payload.list].push(payload.movie);
+      }
 
-    //   return {
-    //     ...state,
-    //     products: payload.products,
-    //   };
+      return {
+        ...state,
+        user: user,
+      };
+    }
+
     // case "REMOVE_FROM_WATCHLIST":
     //   console.log("REMOVE_FROM_WATCHLIST", payload);
 

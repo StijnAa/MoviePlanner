@@ -1,5 +1,3 @@
-import { getAuth } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
 import FriendsList from "./FriendsList";
 import LogIn from "./login";
 import WelcomeMsg from "./WelcomeMsg";
@@ -10,7 +8,7 @@ const AccountInfo = () => {
       <div className="account-info__container">
         <WelcomeMsg />
         <LogIn />
-        {/* <FriendsList /> */}
+        <FriendsList />
       </div>
     </div>
   );

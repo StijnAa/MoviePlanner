@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useContext } from "react";
 
 const WelcomeMsg = () => {
-  const { user } = useContext(UserContext);
+  const { user }: any = useContext(UserContext);
 
   const welcomeBackText = (
     <>
@@ -28,7 +28,7 @@ const WelcomeMsg = () => {
       <p>Log in om te zien naar welke film je vrienden willen gaan.</p>
     </>
   );
-  console.log(user);
+
   return (
     <div className="welkom-msg">
       <div className="welkom-msg__text">

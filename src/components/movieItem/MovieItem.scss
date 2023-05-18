@@ -66,24 +66,50 @@
 .movie-item__filter-button--minus {
   background-color: #c23f3f;
   &.active {
-    background-color: #b43a3a;
+    color: #c23f3f;
+    background-color: white;
+    border-color: #c23f3f;
+    border-width: 2px;
+    border-style: solid;
+    transition: all 0.2s ease-in-out;
   }
 
   // nice hover effect with underline animation:
   &:hover {
-    background-color: #b43a3a;
+    background-color: #872b2b;
     transition: all 0.2s ease-in-out;
+  }
+  &.active:hover {
+    color: white;
+    background-color: #d28888;
+    transition: all 0.2s ease-in-out;
+  }
+  &:disabled {
+    background-color: #d9d9d9;
   }
 }
 .movie-item__filter-button--plus {
   background-color: #73a27c;
   &.active {
-    background-color: #6a9873;
+    color: #73a27c;
+    background-color: white;
+    border-color: #73a27c;
+    border-width: 2px;
+    border-style: solid;
+    transition: all 0.2s ease-in-out;
   }
 
   // nice hover effect with underline animation:
   &:hover {
     background-color: #6a9873;
     transition: all 0.2s ease-in-out;
+  }
+  &.active:hover {
+    color: white;
+    background-color: #b5ddbb;
+    transition: all 0.2s ease-in-out;
+  }
+  &:disabled {
+    background-color: #d9d9d9;
   }
 }
