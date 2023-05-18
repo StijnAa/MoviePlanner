@@ -6,7 +6,6 @@ import views from "../types/views";
 import { useRouter } from "next/router";
 
 export default function Index() {
-  const [view, setView] = useState<views>("my-list");
   return (
     <>
       <Head>
