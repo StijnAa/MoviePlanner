@@ -19,7 +19,7 @@
   flex-direction: column;
   text-align: center;
   gap: 10px;
-  &:has(.friend-item__cross) .friend-item__image-container {
+  &.delete .friend-item__image-container {
     filter: blur(2px) grayscale(100%);
   }
 }

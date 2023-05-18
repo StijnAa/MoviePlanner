@@ -7,7 +7,7 @@ const WelcomeMsg = () => {
 
   const welcomeBackText = (
     <>
-      <h2>Welkom terug,</h2>
+      <h2>Welkom terug!</h2>
       {user.photoUrl && (
         <div className="welkom-msg__image-container">
           <Image

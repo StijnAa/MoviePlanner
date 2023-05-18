@@ -10,9 +10,11 @@ function convertToPlain(html: any) {
   var tempDivElement = document.createElement("div");
 
   // Set the HTML content with the given value
-  tempDivElement.innerHTML = html;
+  tempDivElement.innerHTML = html.replace(/&nbsp;/g, " ");
 
   // Retrieve the text property of the element
+  console.log(html);
+
   return (
     tempDivElement.textContent?.replaceAll("/", " / ") ||
     tempDivElement.innerText.replaceAll("/", " / ") ||

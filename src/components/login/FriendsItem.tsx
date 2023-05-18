@@ -20,7 +20,7 @@ const FriendsItem = (props: User) => {
   useClickOutside({ ref: itemRef, onClick: () => setActive(false) });
 
   return (
-    <li className="friend-item" ref={itemRef}>
+    <li className={cx("friend-item", active && "delete")} ref={itemRef}>
       <button className="friend-item__button" onClick={handleButton}>
         <div className="friend-item__image-container">
           <Image

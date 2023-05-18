@@ -7,6 +7,7 @@ import { useCallback } from "react";
 import MovieList from "../movieList/MovieList";
 import Views from "../../types/views";
 import LoadingItem from "../movieItem/LoadingItem";
+import cx from "classnames";
 
 const MovieGroups = () => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
@@ -81,18 +82,19 @@ const MovieGroups = () => {
       {groups.length > 0 &&
         groups.map((group: Movie[], i) => {
           const date = new Date(group[0].date);
+          const fourWeeksAgo = new Date();
+          fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28);
+          const old = group[0].date < fourWeeksAgo.valueOf();
+
           return (
-            <div className="movie-group" key={i}>
+            <div className={cx("movie-group", old && "old")} key={i}>
               <div className="movie-group__date">
                 <div className="movie-group__date-month">{date.getDate()}</div>
                 <div className="movie-group__date-day">
                   {monthNames[date.getMonth()]}
                 </div>
               </div>
-              <MovieList group={group}>
-                {/* {i === index && view !== "removed" && <DateLine />} */}
-                <div></div>
-              </MovieList>
+              <MovieList group={group}>{i === index && <DateLine />}</MovieList>
             </div>
           );
         })}
