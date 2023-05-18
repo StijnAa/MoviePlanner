@@ -1,9 +1,7 @@
 import React from "react";
 import Movie from "../../types/movie";
 import _ from "lodash";
-import cx from "classnames";
 import Image from "next/image";
-import { Avatar, AvatarBadge, AvatarGroup, Stack } from "@chakra-ui/react";
 
 function convertToPlain(html: any) {
   // Create a new div element
@@ -20,15 +18,16 @@ function convertToPlain(html: any) {
   );
 }
 
+const handleAddToWatchlist = () => {};
+const handleAddToSkipList = () => {};
+
 const MovieItem = ({
   image,
   title,
   date,
   external_id,
   teaser,
-  position,
   slug,
-  imageSrc,
 }: Movie) => {
   const day = new Date(date).getDate();
   const month = new Date(date).getMonth() + 1;

@@ -1,39 +1,39 @@
-import { getAuth } from "firebase/auth";
+import { UserContext } from "@/state/userContext";
 import Image from "next/image";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useContext } from "react";
 
 const WelcomeMsg = () => {
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth);
-  const loggedIn = (
+  const { user } = useContext(UserContext);
+
+  const welcomeBackText = (
     <>
       <h2>Welkom terug,</h2>
-      {user?.photoURL && (
+      {user.photoUrl && (
         <div className="welkom-msg__image-container">
           <Image
-            src={user?.photoURL}
+            src={user.photoUrl}
             alt="user profile picture"
             width={200}
             height={200}
           />
         </div>
       )}
-      <p>{user?.displayName}</p>
+      <p>{user.name}</p>
     </>
   );
 
-  const loggedOut = (
+  const welcomeText = (
     <>
       <h2>Welkom,</h2>
       <p>Log in om te zien naar welke film je vrienden willen gaan.</p>
     </>
   );
-  const loadingMsg = "Loading...";
+  console.log(user);
   return (
     <div className="welkom-msg">
-      <p className="welkom-msg__text">
-        {user ? loggedIn : loading ? loadingMsg : loggedOut}
-      </p>
+      <div className="welkom-msg__text">
+        {user.name ? welcomeBackText : welcomeText}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import Movie from "@/types/movie";
 import Views from "@/types/views";
-import user from "public/user.json";
+
 const oldMovie = (movie: Movie) => {
   const today = new Date();
   const fourWeeksAgo = new Date();
@@ -16,18 +16,5 @@ const oldMovie = (movie: Movie) => {
 };
 
 export default function filterView(movie: Movie, view: Views) {
-  if (view === "old") {
-    return oldMovie(movie);
-  } else {
-    if (oldMovie(movie)) {
-      return false;
-    }
-    if (view === "all") {
-      return true;
-    } else if (view === "my-list") {
-      return !user.skiplist.includes(movie.external_id);
-    } else if (view === "removed") {
-      return user.skiplist.includes(movie.external_id);
-    }
-  }
+  return movie;
 }

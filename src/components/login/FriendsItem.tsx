@@ -1,18 +1,19 @@
 import Image from "next/image";
+import User from "@/types/user";
 
-const FriendsItem = () => {
+const FriendsItem = (props: User) => {
   return (
     <li className="friend-item">
       <div className="friend-item__image-container">
         <Image
-          src="https://via.placeholder.com/150"
+          src={props.photoUrl}
           alt="placeholder"
           className="friend-item__image"
           width={100}
           height={100}
         />
       </div>
-      <p className="friend-item__name">Stijn</p>
+      <p className="friend-item__name">{props.name}</p>
       <button className="friend-item__delete">
         <span>X</span>
       </button>

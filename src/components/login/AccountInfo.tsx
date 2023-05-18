@@ -10,7 +10,7 @@ const AccountInfo = () => {
       <div className="account-info__container">
         <WelcomeMsg />
         <LogIn />
-        <FriendsList />
+        {/* <FriendsList /> */}
       </div>
     </div>
   );
