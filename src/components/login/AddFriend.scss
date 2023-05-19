@@ -1,0 +1,70 @@
+.add-friend {
+  padding: 0 16px;
+
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 60px;
+  margin: 40px 0;
+}
+
+.add-friend__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+
+  .add-friend__image-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.add-friend__button-container {
+  width: 200px;
+  height: 80px;
+}
+.add-friend__button {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+
+  background-color: #c23f3f;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  text-underline-offset: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active {
+    background-color: #b43a3a;
+
+    text-decoration: underline;
+  }
+
+  // nice hover effect with underline animation:
+  &:hover {
+    background-color: #b43a3a;
+    text-decoration: underline;
+    transition: all 0.2s ease-in-out;
+  }
+}
+.add-friend__msg {
+}

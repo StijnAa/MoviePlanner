@@ -2,7 +2,7 @@ import cx from "classnames";
 import Link from "next/link";
 
 type NavigationProps = {
-  page: string;
+  page?: string;
 };
 
 const Navigation = ({ page }: NavigationProps) => {

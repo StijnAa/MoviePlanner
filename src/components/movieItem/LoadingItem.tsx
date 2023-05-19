@@ -10,10 +10,6 @@ const LoadingItem = () => {
   return (
     <div className="movie-item--loading">
       <div className="movie-item__image--loading"></div>
-      <div className="movie-item__text-content--loading">
-        <div className="movie-item__title--loading" />
-        <div className="movie-item__overview--loading" />
-      </div>
     </div>
   );
 };

@@ -3,15 +3,18 @@ import User from "@/types/user";
 import { useRef, useState } from "react";
 import useClickOutside from "@/utils/hooks/useClickOutside";
 import cx from "classnames";
+import { useContext } from "react";
+import { UserContext } from "@/state/userContext";
 
 const FriendsItem = (props: User) => {
+  const { removeFriend }: any = useContext(UserContext);
   const [active, setActive] = useState(false);
   const itemRef = useRef(null);
 
   const handleButton = () => {
     setActive((prev) => {
       if (prev) {
-        console.log("clicked");
+        removeFriend(props.uid);
       }
       return true;
     });

@@ -4,6 +4,7 @@ import _ from "lodash";
 import Image from "next/image";
 import { UserContext } from "@/state/userContext";
 import cx from "classnames";
+import User from "@/types/user";
 
 function convertToPlain(html: any) {
   // Create a new div element
@@ -13,7 +14,6 @@ function convertToPlain(html: any) {
   tempDivElement.innerHTML = html.replace(/&nbsp;/g, " ");
 
   // Retrieve the text property of the element
-  console.log(html);
 
   return (
     tempDivElement.textContent?.replaceAll("/", " / ") ||
@@ -30,7 +30,7 @@ const MovieItem = ({
   teaser,
   slug,
 }: Movie) => {
-  const { toggleMovie, user }: any = useContext(UserContext);
+  const { toggleMovie, user, friends }: any = useContext(UserContext);
 
   const handleAddToWatchlist = () => {
     if (user.name) {
@@ -66,7 +66,36 @@ const MovieItem = ({
         </div>
       </a>
       <div className="movie-item__social-data">
-        <div className="movie-item__friends"></div>
+        <div className="movie-item__friends">
+          <>
+            {user.watchlist.includes(external_id) && (
+              <div className="movie-item__friend-image">
+                <Image
+                  src={user.photoUrl}
+                  alt="user profile picture"
+                  width={200}
+                  height={200}
+                />
+              </div>
+            )}
+          </>
+          <>
+            {friends.map((friend: User, i: number) => {
+              if (friend.watchlist.includes(external_id)) {
+                return (
+                  <div className="movie-item__friend-image" key={i}>
+                    <Image
+                      src={friend.photoUrl}
+                      alt="user profile picture"
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                );
+              }
+            })}
+          </>
+        </div>
         <div className="movie-item__filter-buttons">
           <button
             className={cx(

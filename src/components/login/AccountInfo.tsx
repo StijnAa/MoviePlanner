@@ -7,8 +7,8 @@ const AccountInfo = () => {
     <div className="account-info">
       <div className="account-info__container">
         <WelcomeMsg />
-        <FriendsList />
         <LogIn />
+        <FriendsList />
       </div>
     </div>
   );

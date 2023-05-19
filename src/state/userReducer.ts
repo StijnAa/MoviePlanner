@@ -24,7 +24,7 @@ const userReducer = (state: any, action: any) => {
     }
     case "TOGGLE_MOVIE": {
       const user = state.user;
-      console.log("TOGGLE_MOVIE", user[payload.list].includes(payload.movie));
+
       if (user[payload.list].includes(payload.movie)) {
         const list = user[payload.list].filter(
           (movie: any) => movie !== payload.movie
@@ -39,14 +39,34 @@ const userReducer = (state: any, action: any) => {
         user: user,
       };
     }
+    case "ADD_FRIEND": {
+      const user = state.user;
 
-    // case "REMOVE_FROM_WATCHLIST":
-    //   console.log("REMOVE_FROM_WATCHLIST", payload);
+      if (!user.friends.includes(payload.uid)) {
+        user.friends.push(payload.uid);
+      }
 
-    //   return {
-    //     ...state,
-    //     products: payload.products,
-    //   };
+      return {
+        ...state,
+        user: user,
+      };
+    }
+    case "REMOVE_FRIEND": {
+      const user = state.user;
+
+      if (user.friends.includes(payload.uid)) {
+        const list = user.friends.filter(
+          (friendUid: any) => friendUid !== payload.uid
+        );
+        user.friends = list;
+      }
+
+      return {
+        ...state,
+        user: user,
+      };
+    }
+
     default:
       throw new Error(`No case for type ${type} found.`);
   }

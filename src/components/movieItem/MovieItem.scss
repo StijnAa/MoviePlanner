@@ -34,7 +34,7 @@
 }
 
 .movie-item__social-data {
-  height: min-content;
+  height: 54px;
   border-color: black;
   border-top-style: solid;
   border-bottom-style: solid;
@@ -62,54 +62,71 @@
   color: white;
   font-weight: 700;
   font-size: 25px;
+  transition: all 0.2s ease-in-out;
+  border-width: 2.8px;
+  border-style: solid;
+  &:hover:disabled,
+  &:disabled {
+    color: white;
+    border-color: #b2b2b2;
+
+    background-color: #b2b2b2;
+    filter: blur(1px);
+  }
 }
 .movie-item__filter-button--minus {
-  background-color: #c23f3f;
+  color: #b2b2b2;
+  background-color: white;
+  border-color: #b2b2b2;
+
   &.active {
-    color: #c23f3f;
-    background-color: white;
+    background-color: #c23f3f;
+    color: white;
     border-color: #c23f3f;
-    border-width: 2px;
-    border-style: solid;
-    transition: all 0.2s ease-in-out;
   }
 
-  // nice hover effect with underline animation:
   &:hover {
-    background-color: #872b2b;
-    transition: all 0.2s ease-in-out;
+    color: #c23f3f;
+    border-color: #c23f3f;
   }
   &.active:hover {
     color: white;
-    background-color: #d28888;
-    transition: all 0.2s ease-in-out;
-  }
-  &:disabled {
-    background-color: #d9d9d9;
+    background-color: #b1a3a3;
+    border-color: #b1a3a3;
   }
 }
 .movie-item__filter-button--plus {
-  background-color: #73a27c;
+  color: #b2b2b2;
+  background-color: white;
+  border-color: #b2b2b2;
   &.active {
-    color: #73a27c;
-    background-color: white;
+    background-color: #73a27c;
+    color: white;
     border-color: #73a27c;
-    border-width: 2px;
-    border-style: solid;
-    transition: all 0.2s ease-in-out;
   }
 
-  // nice hover effect with underline animation:
   &:hover {
-    background-color: #6a9873;
-    transition: all 0.2s ease-in-out;
+    color: #73a27c;
+    border-color: #73a27c;
   }
   &.active:hover {
     color: white;
-    background-color: #b5ddbb;
-    transition: all 0.2s ease-in-out;
+    background-color: #a3b1a5;
+    border-color: #a3b1a5;
   }
-  &:disabled {
-    background-color: #d9d9d9;
-  }
+}
+
+.movie-item__friends {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow-x: auto;
+  align-items: center;
+  gap: 5px;
+}
+.movie-item__friend-image {
+  display: block;
+  width: 40px;
+  height: 40px;
 }

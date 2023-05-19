@@ -1,8 +1,11 @@
 import AccountInfo from "@/components/login/AccountInfo";
 import Head from "next/head";
-import Navigation from "../components/nav/nav";
+import Navigation from "@/components/nav/nav";
+import AddFriend from "@/components/login/AddFriend";
+import { useRouter } from "next/router";
 
 export default function Index() {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -15,8 +18,8 @@ export default function Index() {
         />
       </Head>
       <main className="container">
-        <Navigation page="account" />
-        <AccountInfo />
+        <Navigation />
+        <AddFriend uid={router.query.uid} />
       </main>
     </>
   );

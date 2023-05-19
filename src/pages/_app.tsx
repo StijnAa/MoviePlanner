@@ -13,6 +13,8 @@ import getFriendsData from "@/utils/client/getFriendsData";
 import getOrCreateUser from "@/utils/client/getOrCreateUser";
 import addMovieToWatchlistFirebase from "@/utils/client/toggleMovieInFirebase";
 import toggleMovieInFirebase from "@/utils/client/toggleMovieInFirebase";
+import addFriendInFirebase from "@/utils/client/addFriendInFirebase";
+import removeFriendInFirebase from "@/utils/client/removeFriendInFirebase";
 
 export default function App({ Component, pageProps }: AppProps) {
   initFirebase();
@@ -58,11 +60,33 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   };
 
+  const addFriend = async (uid: string) => {
+    addFriendInFirebase(state.user.uid, uid);
+    dispatch({
+      type: "ADD_FRIEND",
+      payload: {
+        uid: uid,
+      },
+    });
+  };
+
+  const removeFriend = async (uid: string) => {
+    removeFriendInFirebase(state.user.uid, uid);
+    dispatch({
+      type: "REMOVE_FRIEND",
+      payload: {
+        uid: uid,
+      },
+    });
+  };
+
   const value = {
     ...state,
     setUser,
     removeUser,
     toggleMovie,
+    addFriend,
+    removeFriend,
   };
 
   useEffect(() => {
@@ -72,7 +96,6 @@ export default function App({ Component, pageProps }: AppProps) {
       removeUser();
     }
   }, [user]);
-  console.log(state.user);
   return (
     <UserContext.Provider value={value}>
       <Component {...pageProps} />

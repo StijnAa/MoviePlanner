@@ -18,7 +18,7 @@ const WelcomeMsg = () => {
           />
         </div>
       )}
-      <p>{user.name}</p>
+      <span>{user.name}</span>
     </>
   );
 
