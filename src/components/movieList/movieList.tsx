@@ -9,6 +9,7 @@ const MovieList = ({
   group: Movie[];
   children: ReactElement | false;
 }) => {
+  //
   return (
     <ul className="movie-list">
       {children}
