@@ -80,6 +80,16 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   };
 
+  const updateFilters = async (filter: string, value: boolean) => {
+    dispatch({
+      type: "UPDATE_FILTERS",
+      payload: {
+        filter: filter,
+        value: value,
+      },
+    });
+  };
+
   const value = {
     ...state,
     setUser,
@@ -87,6 +97,7 @@ export default function App({ Component, pageProps }: AppProps) {
     toggleMovie,
     addFriend,
     removeFriend,
+    updateFilters,
   };
 
   useEffect(() => {

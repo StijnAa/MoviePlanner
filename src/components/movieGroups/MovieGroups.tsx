@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Movie from "../../types/movie";
 import DateLine from "../dateLine/DateLine";
 import getIndexOfFirstGroupAfterToday from "../../utils/client/getIndexOfFirstGroupAfterToday";
@@ -7,9 +7,11 @@ import { useCallback } from "react";
 import LoadingItem from "../movieItem/LoadingItem";
 import cx from "classnames";
 import MovieItem from "../movieItem/MovieItem";
+import { UserContext } from "@/state/userContext";
 
 const MovieGroups = () => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
+  const { user, filters }: any = useContext(UserContext);
 
   const getData = (msg: string) => {
     return JSON.parse(JSON.parse(msg.slice(1))[0]);
@@ -94,6 +96,25 @@ const MovieGroups = () => {
                 {i === index && <DateLine />}
                 {group.length > 0 &&
                   group.map((movie: Movie, i) => {
+                    if (
+                      filters["skip"] == false &&
+                      user.skiplist.includes(movie.external_id)
+                    ) {
+                      return null;
+                    }
+                    if (
+                      filters["watch"] == false &&
+                      user.watchlist.includes(movie.external_id)
+                    ) {
+                      return null;
+                    }
+                    if (
+                      filters["rest"] == false &&
+                      !user.watchlist.includes(movie.external_id) &&
+                      !user.skiplist.includes(movie.external_id)
+                    ) {
+                      return null;
+                    }
                     return (
                       <li key={"movie" + i} className="movie-item__container">
                         <MovieItem {...movie} />

@@ -1,12 +1,38 @@
-import cx from "classnames";
+import { UserContext } from "@/state/userContext";
+
+import { useContext } from "react";
+
+const Filter = ({ filter, value, updateFilters }: any) => {
+  console.log(filter);
+  return (
+    <div className="filter">
+      <input
+        type="checkbox"
+        id={`toggle-${filter}`}
+        checked={value}
+        onChange={(e) => updateFilters(filter, e.target.checked)}
+      />
+      <label htmlFor={`toggle-${filter}`} className="filter__label">
+        {filter}
+      </label>
+    </div>
+  );
+};
 
 const FilterBar = () => {
+  const { filters, updateFilters }: any = useContext(UserContext);
+  console.log(filters);
+
   return (
     <div className="filter-bar">
-      <div className="filter-bar__item">
-        <input type="checkbox" id="toggleWatch" />
-        <label htmlFor="toggleWatch" className="navigation__link"></label>
-      </div>
+      {Object.keys(filters).map((filter) => (
+        <Filter
+          key={filter}
+          filter={filter}
+          value={filters[filter]}
+          updateFilters={updateFilters}
+        />
+      ))}
     </div>
   );
 };

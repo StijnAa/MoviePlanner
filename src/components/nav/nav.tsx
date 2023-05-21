@@ -1,5 +1,6 @@
 import cx from "classnames";
 import Link from "next/link";
+import FilterBar from "./filterBar";
 
 type NavigationProps = {
   page?: string;
@@ -22,6 +23,7 @@ const Navigation = ({ page }: NavigationProps) => {
           Account
         </Link>
       </div>
+      <FilterBar />
     </div>
   );
 };
