@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Navigation from "@/components/nav/Nav";
+import Navigation from "@/components/nav/-Nav";
 import AddFriend from "@/components/addFriend/AddFriend";
 import { useRouter } from "next/router";
 

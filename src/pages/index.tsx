@@ -1,7 +1,7 @@
 import Head from "next/head";
 import MovieGroups from "@/components/movieGroups/MovieGroups";
 import { useState } from "react";
-import Navigation from "../components/nav/Nav";
+import Navigation from "../components/nav/-Nav";
 import views from "../types/views";
 import { useRouter } from "next/router";
 
