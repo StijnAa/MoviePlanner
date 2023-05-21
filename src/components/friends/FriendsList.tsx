@@ -3,8 +3,7 @@ import FriendsItem from "./FriendsItem";
 import { useContext } from "react";
 import { UserContext } from "@/state/userContext";
 import User from "@/types/user";
-import Link from "next/link";
-import { useEffect } from "react";
+import Button from "../button/Button";
 
 const FriendsList = () => {
   const { user, friends }: any = useContext(UserContext);
@@ -18,17 +17,12 @@ const FriendsList = () => {
 
   return (
     <div className="friends-list">
-      <h3>Deel deze link met je vrienden</h3>
-      <div className="log-in">
-        <button
-          className="log-in__button"
-          onClick={() => {
-            copyLink();
-          }}
-        >
-          {clipboard ? "Gekopieerd!" : "Link kopiëren"}
-        </button>{" "}
-      </div>
+      <h3>Deel deze je profiel met je vrienden</h3>
+
+      <Button
+        text={clipboard ? "Gekopieerd!" : "Link kopiëren"}
+        onClick={copyLink}
+      />
 
       {friends.length > 0 && (
         <>

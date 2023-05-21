@@ -1,26 +1,10 @@
-.friends-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.friends-list__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-}
-
 .friend-item {
   list-style: none;
   display: flex;
   flex-direction: column;
   text-align: center;
   gap: 10px;
-  &.delete .friend-item__image-container {
+  &.delete {
     filter: blur(2px) grayscale(100%);
   }
 }
@@ -49,13 +33,6 @@
   color: white;
 }
 
-.friend-item__image-container {
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  overflow: hidden;
-  margin: 10px 0;
-}
 .friend-item__delete {
   justify-content: center;
   display: flex;
@@ -81,8 +58,4 @@
       transition: all 0.2s ease-in-out;
     }
   }
-}
-img {
-  width: 100%;
-  height: 100%;
 }

@@ -1,7 +1,6 @@
-import AccountInfo from "@/components/login/AccountInfo";
 import Head from "next/head";
-import Navigation from "@/components/nav/nav";
-import AddFriend from "@/components/login/AddFriend";
+import Navigation from "@/components/nav/Nav";
+import AddFriend from "@/components/addFriend/AddFriend";
 import { useRouter } from "next/router";
 
 export default function Index() {

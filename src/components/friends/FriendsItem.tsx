@@ -5,8 +5,9 @@ import useClickOutside from "@/utils/hooks/useClickOutside";
 import cx from "classnames";
 import { useContext } from "react";
 import { UserContext } from "@/state/userContext";
+import SingleUser from "../singleUser/SingleUser";
 
-const FriendsItem = (props: User) => {
+const FriendsItem = (user: User) => {
   const { removeFriend }: any = useContext(UserContext);
   const [active, setActive] = useState(false);
   const itemRef = useRef(null);
@@ -14,7 +15,7 @@ const FriendsItem = (props: User) => {
   const handleButton = () => {
     setActive((prev) => {
       if (prev) {
-        removeFriend(props.uid);
+        removeFriend(user.uid);
       }
       return true;
     });
@@ -25,16 +26,7 @@ const FriendsItem = (props: User) => {
   return (
     <li className={cx("friend-item", active && "delete")} ref={itemRef}>
       <button className="friend-item__button" onClick={handleButton}>
-        <div className="friend-item__image-container">
-          <Image
-            src={props.photoUrl}
-            alt="placeholder"
-            className="friend-item__image"
-            width={100}
-            height={100}
-          />
-        </div>
-        <p className="friend-item__name">{props.name}</p>
+        <SingleUser user={user} />
         {active && <div className="friend-item__cross">✖</div>}
       </button>
     </li>

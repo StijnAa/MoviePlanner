@@ -4,10 +4,9 @@ import DateLine from "../dateLine/DateLine";
 import getIndexOfFirstGroupAfterToday from "../../utils/client/getIndexOfFirstGroupAfterToday";
 import moviesToGroups from "@/utils/client/moviesToGroups";
 import { useCallback } from "react";
-import MovieList from "../movieList/MovieList";
-import Views from "../../types/views";
 import LoadingItem from "../movieItem/LoadingItem";
 import cx from "classnames";
+import MovieItem from "../movieItem/MovieItem";
 
 const MovieGroups = () => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
@@ -82,19 +81,26 @@ const MovieGroups = () => {
       {groups.length > 0 &&
         groups.map((group: Movie[], i) => {
           const date = new Date(group[0].date);
-          const fourWeeksAgo = new Date();
-          fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28);
-          const old = group[0].date < fourWeeksAgo.valueOf();
 
           return (
-            <div className={cx("movie-group", old && "old")} key={i}>
+            <div className={cx("movie-group")} key={"group-" + i}>
               <div className="movie-group__date">
                 <div className="movie-group__date-month">{date.getDate()}</div>
                 <div className="movie-group__date-day">
                   {monthNames[date.getMonth()]}
                 </div>
               </div>
-              <MovieList group={group}>{i === index && <DateLine />}</MovieList>
+              <ul className="movie-list">
+                {i === index && <DateLine />}
+                {group.length > 0 &&
+                  group.map((movie: Movie, i) => {
+                    return (
+                      <li key={"movie" + i} className="movie-item__container">
+                        <MovieItem {...movie} />
+                      </li>
+                    );
+                  })}
+              </ul>
             </div>
           );
         })}
@@ -108,9 +114,7 @@ const MovieGroups = () => {
             <li className="movie-item__container--loading">
               <LoadingItem />
               <LoadingItem />
-
               <LoadingItem />
-
               <LoadingItem />
             </li>
           </ul>

@@ -5,6 +5,7 @@ import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import useUser from "@/state/userContext";
 import User from "@/types/user";
+import Button from "../button/Button";
 
 const LogIn = () => {
   const provider = new GoogleAuthProvider();
@@ -12,26 +13,20 @@ const LogIn = () => {
   const [user, loading] = useAuthState(auth);
 
   const signIn = async () => {
-    const result = await signInWithPopup(auth, provider);
+    await signInWithPopup(auth, provider);
   };
   const signOut = () => {
     auth.signOut();
   };
 
   return (
-    <div className="log-in">
-      {user && (
-        <button className="log-in__button" onClick={() => signOut()}>
-          Sign out
-        </button>
+    <>
+      {!user && !loading ? (
+        <Button text="Log in" onClick={signIn} />
+      ) : (
+        <Button text="Log uit" onClick={signOut} />
       )}
-      {!user && !loading && (
-        <button className="log-in__button" onClick={() => signIn()}>
-          Sign In
-        </button>
-      )}
-      {loading && <div className="log-in__button">Loading...</div>}
-    </div>
+    </>
   );
 };
 

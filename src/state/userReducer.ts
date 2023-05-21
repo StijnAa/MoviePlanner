@@ -9,6 +9,11 @@ export const initialState = {
     name: undefined,
   },
   friends: [],
+  filters: {
+    watch: true,
+    skip: false,
+    rest: true,
+  },
 };
 
 const userReducer = (state: any, action: any) => {
@@ -64,6 +69,16 @@ const userReducer = (state: any, action: any) => {
       return {
         ...state,
         user: user,
+      };
+    }
+    case "UPDATE_FILTERS": {
+      let newFilters = state.filters;
+
+      newFilters[payload.filter] = payload.value;
+
+      return {
+        ...state,
+        filters: newFilters,
       };
     }
 
