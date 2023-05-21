@@ -1,10 +1,5 @@
-import { RefObject, use, useEffect, useRef } from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import initFirebase from "../../firebase/firebase";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import useUser from "@/state/userContext";
-import User from "@/types/user";
 import Button from "../button/Button";
 
 const LogIn = () => {
