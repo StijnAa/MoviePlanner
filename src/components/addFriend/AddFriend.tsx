@@ -9,7 +9,7 @@ import Button from "../button/Button";
 import SingleUser from "../singleUser/SingleUser";
 import SingleUserLoading from "../singleUser/SingleUserLoading";
 
-const AddFriend = ({ uid }: { uid: string }) => {
+const AddFriend = ({ uid }: { uid?: string }) => {
   const [clipboard, setClipboard] = useState(false);
   const { user, addFriend }: any = useContext(UserContext);
   const provider = new GoogleAuthProvider();
