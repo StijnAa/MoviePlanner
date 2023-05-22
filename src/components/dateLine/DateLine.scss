@@ -1,19 +1,17 @@
 .date-line {
-  flex-direction: row;
-  align-items: center;
-  justify-content: left;
   position: relative;
-  transform: translate(-66px, -35px);
+  transform: translate(3px, -2px);
   width: 474%;
-  height: 0px;
+  margin: 18px 0;
+  list-style: none;
 
   .date-line__line {
-    width: 100%;
+    width: 107%;
     height: 0.1rem;
     background-color: #c23f3f;
   }
   .date-line__circle {
-    transform: translate(0px, -32px);
+    transform: translate(0px, -44px);
     position: absolute;
     width: 1rem;
     height: 1rem;
@@ -30,13 +28,7 @@
   p {
     color: #c23f3f;
     font-weight: 700;
-    transform: translate(711px, 0px);
-    margin: 2px;
-  }
-  p:first-child {
-    color: #c23f3f;
-    font-weight: 700;
-    transform: translate(770px, 0px);
-    margin: 3px;
+    transform: translate(43px, 0px);
+    margin: 8px 0;
   }
 }

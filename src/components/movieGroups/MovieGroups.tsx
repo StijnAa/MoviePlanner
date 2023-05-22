@@ -85,44 +85,48 @@ const MovieGroups = () => {
           const date = new Date(group[0].date);
 
           return (
-            <div className={cx("movie-group")} key={"group-" + i}>
-              <div className="movie-group__date">
-                <div className="movie-group__date-month">{date.getDate()}</div>
-                <div className="movie-group__date-day">
-                  {monthNames[date.getMonth()]}
+            <>
+              {i === index && <DateLine />}
+              <div className={cx("movie-group")} key={"group-" + i}>
+                <div className="movie-group__date">
+                  <div className="movie-group__date-month">
+                    {date.getDate()}
+                  </div>
+                  <div className="movie-group__date-day">
+                    {monthNames[date.getMonth()]}
+                  </div>
                 </div>
+                <ul className="movie-list">
+                  {group.length > 0 &&
+                    group.map((movie: Movie, i) => {
+                      if (
+                        filters["skip"] == false &&
+                        user.skiplist.includes(movie.external_id)
+                      ) {
+                        return null;
+                      }
+                      if (
+                        filters["watch"] == false &&
+                        user.watchlist.includes(movie.external_id)
+                      ) {
+                        return null;
+                      }
+                      if (
+                        filters["rest"] == false &&
+                        !user.watchlist.includes(movie.external_id) &&
+                        !user.skiplist.includes(movie.external_id)
+                      ) {
+                        return null;
+                      }
+                      return (
+                        <li key={"movie" + i} className="movie-item__container">
+                          <MovieItem {...movie} />
+                        </li>
+                      );
+                    })}
+                </ul>
               </div>
-              <ul className="movie-list">
-                {i === index && <DateLine />}
-                {group.length > 0 &&
-                  group.map((movie: Movie, i) => {
-                    if (
-                      filters["skip"] == false &&
-                      user.skiplist.includes(movie.external_id)
-                    ) {
-                      return null;
-                    }
-                    if (
-                      filters["watch"] == false &&
-                      user.watchlist.includes(movie.external_id)
-                    ) {
-                      return null;
-                    }
-                    if (
-                      filters["rest"] == false &&
-                      !user.watchlist.includes(movie.external_id) &&
-                      !user.skiplist.includes(movie.external_id)
-                    ) {
-                      return null;
-                    }
-                    return (
-                      <li key={"movie" + i} className="movie-item__container">
-                        <MovieItem {...movie} />
-                      </li>
-                    );
-                  })}
-              </ul>
-            </div>
+            </>
           );
         })}
       {groups.length == 0 && (
