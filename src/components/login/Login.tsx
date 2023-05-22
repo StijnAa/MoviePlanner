@@ -1,4 +1,9 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithRedirect,
+} from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Button from "../button/Button";
 
@@ -8,7 +13,7 @@ const LogIn = () => {
   const [user, loading] = useAuthState(auth);
 
   const signIn = async () => {
-    await signInWithPopup(auth, provider);
+    await signInWithRedirect(auth, provider);
   };
   const signOut = () => {
     auth.signOut();

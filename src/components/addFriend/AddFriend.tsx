@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "@/state/userContext";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 import Button from "../button/Button";
 import SingleUser from "../singleUser/SingleUser";
 import SingleUserLoading from "../singleUser/SingleUserLoading";
@@ -33,8 +33,7 @@ const AddFriend = ({ uid }: { uid: string }) => {
   }, [uid]);
 
   const signIn = async () => {
-    const result = await signInWithPopup(auth, provider);
-    console.log(result);
+    await signInWithRedirect(auth, provider);
   };
 
   const copyToClipboard = () => {
