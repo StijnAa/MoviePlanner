@@ -7,8 +7,10 @@ export default function Document() {
       <Html lang="en">
         <Head />
         <body>
-          <Main />
-          <NextScript />
+          <div className="overflow-hidden">
+            <Main />
+            <NextScript />
+          </div>
         </body>
       </Html>
     </React.StrictMode>

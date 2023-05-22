@@ -47,10 +47,6 @@ const AddFriend = ({ uid }: { uid: string }) => {
     window.location.href = "/";
   };
 
-  let onClick = () => {
-    return;
-  };
-
   const addFriendTitle = "Vriend toevoegen";
   const loadingTitle = "Loading...";
   const NotFoundTitle = "Helaas...";
