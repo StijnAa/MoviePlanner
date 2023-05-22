@@ -17,7 +17,7 @@ const FriendsList = () => {
 
   return (
     <div className="friends-list">
-      <h3>Deel deze je profiel met je vrienden</h3>
+      <h3>Deel je profiel met je vrienden</h3>
 
       <Button
         text={clipboard ? "Gekopieerd!" : "Link kopiëren"}
