@@ -38,8 +38,11 @@ const AddFriend = ({ uid }: { uid?: string }) => {
   };
 
   const copyToClipboard = () => {
+    const copyText =
+      "Hey, Zin om een keer mee te gaan naar de film? Met deze link kun je zien naar welke films ik wil gaan:";
     const currentHref = window.location.href;
-    navigator.clipboard.writeText(currentHref);
+    const text = copyText + " " + currentHref;
+    navigator.clipboard.writeText(text);
     setClipboard(true);
   };
 
