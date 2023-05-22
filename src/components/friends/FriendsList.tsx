@@ -9,9 +9,12 @@ const FriendsList = () => {
   const { user, friends }: any = useContext(UserContext);
   const [clipboard, setClipboard] = React.useState(false);
 
-  const copyLink = () => {
-    const url = window.location.href + "/add/" + user.uid;
-    navigator.clipboard.writeText(url);
+  const copyToClipboard = () => {
+    const copyText =
+      "Hey, Zin om een keer mee te gaan naar de film? Met deze link kun je zien naar welke films ik wil gaan:";
+    const currentHref = window.location.href + "/add/" + user.uid;
+    const text = copyText + " " + currentHref;
+    navigator.clipboard.writeText(text);
     setClipboard(true);
   };
 
@@ -21,7 +24,7 @@ const FriendsList = () => {
 
       <Button
         text={clipboard ? "Gekopieerd!" : "Link kopiëren"}
-        onClick={copyLink}
+        onClick={copyToClipboard}
       />
 
       {friends.length > 0 && (
