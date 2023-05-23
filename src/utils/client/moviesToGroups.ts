@@ -10,7 +10,7 @@ export const preFilter = (movie: Movie) => {
   return b;
 };
 
-const moviesToGroups = (movies: Movie[], filters, user) => {
+const moviesToGroups = (movies: Movie[], filters: any, user: any) => {
   const filteredMovies = movies.filter((movie) => {
     if (filters["skip"] == false && user.skiplist.includes(movie.external_id)) {
       return null;
