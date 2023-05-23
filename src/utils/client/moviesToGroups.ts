@@ -10,9 +10,28 @@ export const preFilter = (movie: Movie) => {
   return b;
 };
 
-const moviesToGroups = (movies: Movie[]) => {
-  movies.sort(sortByDate);
-  const groups = groupMoviesByDate(movies);
+const moviesToGroups = (movies: Movie[], filters, user) => {
+  const filteredMovies = movies.filter((movie) => {
+    if (filters["skip"] == false && user.skiplist.includes(movie.external_id)) {
+      return null;
+    }
+    if (
+      filters["watch"] == false &&
+      user.watchlist.includes(movie.external_id)
+    ) {
+      return null;
+    }
+    if (
+      filters["rest"] == false &&
+      !user.watchlist.includes(movie.external_id) &&
+      !user.skiplist.includes(movie.external_id)
+    ) {
+      return null;
+    }
+    return movie;
+  });
+  filteredMovies.sort(sortByDate);
+  const groups = groupMoviesByDate(filteredMovies);
 
   return groups;
 };

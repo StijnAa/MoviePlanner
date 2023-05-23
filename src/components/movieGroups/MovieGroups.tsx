@@ -81,7 +81,7 @@ const MovieGroups = () => {
     };
   }, []);
 
-  const groups = moviesToGroups(movies);
+  const groups = moviesToGroups(movies, filters, user);
   const index = getIndexOfFirstGroupAfterToday(groups);
   return (
     <ul className="movie-groups">
@@ -105,25 +105,6 @@ const MovieGroups = () => {
                 <ul className="movie-list">
                   {group.length > 0 &&
                     group.map((movie: Movie, i) => {
-                      if (
-                        filters["skip"] == false &&
-                        user.skiplist.includes(movie.external_id)
-                      ) {
-                        return null;
-                      }
-                      if (
-                        filters["watch"] == false &&
-                        user.watchlist.includes(movie.external_id)
-                      ) {
-                        return null;
-                      }
-                      if (
-                        filters["rest"] == false &&
-                        !user.watchlist.includes(movie.external_id) &&
-                        !user.skiplist.includes(movie.external_id)
-                      ) {
-                        return null;
-                      }
                       return (
                         <li key={"movie" + i} className="movie-item__container">
                           <MovieItem {...movie} />
