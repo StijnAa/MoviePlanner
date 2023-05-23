@@ -4,9 +4,13 @@ import fixDates from "./fixDates";
 import groupMoviesByDate from "./groupMoviesByDate";
 import sortByDate from "./sortByDate";
 
+export const preFilter = (movie: Movie) => {
+  const a = fixDates(movie);
+  const b = filterMovies(a);
+  return b;
+};
+
 const moviesToGroups = (movies: Movie[]) => {
-  movies = fixDates(movies);
-  movies = movies.filter(filterMovies);
   movies.sort(sortByDate);
   const groups = groupMoviesByDate(movies);
 

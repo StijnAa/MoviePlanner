@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Movie from "../../types/movie";
 import DateLine from "../dateLine/DateLine";
 import getIndexOfFirstGroupAfterToday from "../../utils/client/getIndexOfFirstGroupAfterToday";
-import moviesToGroups from "@/utils/client/moviesToGroups";
+import moviesToGroups, { preFilter } from "@/utils/client/moviesToGroups";
 import { useCallback } from "react";
 import LoadingItem from "../movieItem/LoadingItem";
 import cx from "classnames";
@@ -11,6 +11,7 @@ import { UserContext } from "@/state/userContext";
 
 const MovieGroups = () => {
   const [movies, setMovies] = useState<Array<Movie>>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const { user, filters }: any = useContext(UserContext);
 
   const getData = (msg: string) => {
@@ -34,8 +35,10 @@ const MovieGroups = () => {
 
   const onMessage = useCallback((string: string) => {
     if (string === "o") return;
-
     const data = getData(string);
+    if (data.msg == "ready") {
+      setLoading(false);
+    }
 
     if (data.server_id) {
       sw.current?.send(
@@ -57,8 +60,10 @@ const MovieGroups = () => {
       ) {
         data.fields.image = `https://www.cineville.nl/${data.fields.image}`;
       }
-
-      setMovies((prev) => [...prev, data.fields]);
+      const newMovie = preFilter(data.fields);
+      if (newMovie) {
+        setMovies((prev) => [...prev, newMovie]);
+      }
     }
   }, []);
 
@@ -80,7 +85,8 @@ const MovieGroups = () => {
   const index = getIndexOfFirstGroupAfterToday(groups);
   return (
     <ul className="movie-groups">
-      {groups.length > 0 &&
+      {!loading &&
+        groups[0].length > 0 &&
         groups.map((group: Movie[], i) => {
           const date = new Date(group[0].date);
 
@@ -129,7 +135,8 @@ const MovieGroups = () => {
             </>
           );
         })}
-      {groups.length == 0 && (
+
+      {loading && (
         <div className="movie-group">
           <div className="movie-group__date">
             <div className="movie-group__date-month--loading" />

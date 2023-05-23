@@ -3,7 +3,6 @@ import { UserContext } from "@/state/userContext";
 import { useContext } from "react";
 
 const Filter = ({ filter, value, updateFilters }: any) => {
-  console.log(filter);
   return (
     <div className="filter">
       <input
@@ -21,7 +20,6 @@ const Filter = ({ filter, value, updateFilters }: any) => {
 
 const FilterBar = () => {
   const { filters, updateFilters }: any = useContext(UserContext);
-  console.log(filters);
 
   return (
     <div className="filter-bar">
