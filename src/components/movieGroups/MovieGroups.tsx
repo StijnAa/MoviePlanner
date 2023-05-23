@@ -86,7 +86,6 @@ const MovieGroups = () => {
   return (
     <ul className="movie-groups">
       {!loading &&
-        groups[0].length > 0 &&
         groups.map((group: Movie[], i) => {
           const date = new Date(group[0].date);
 
