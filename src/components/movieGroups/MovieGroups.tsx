@@ -84,7 +84,7 @@ const MovieGroups = () => {
   const groups = moviesToGroups(movies, filters, user);
   const index = getIndexOfFirstGroupAfterToday(groups);
   return (
-    <ul className="movie-groups">
+    <div className="movie-groups">
       {!loading &&
         groups.map((group: Movie[], i) => {
           const date = new Date(group[0].date);
@@ -132,7 +132,7 @@ const MovieGroups = () => {
           </ul>
         </div>
       )}
-    </ul>
+    </div>
   );
 };
 

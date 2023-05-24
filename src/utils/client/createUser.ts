@@ -9,7 +9,7 @@ export default async function createUser(authUser: any) {
   const newUserData = {
     uid: authUser.uid,
     name: authUser.displayName,
-    friends: [authUser.uid],
+    friends: [],
     friendRequests: [],
     watchlist: [],
     skiplist: [],
