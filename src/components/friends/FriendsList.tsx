@@ -29,7 +29,7 @@ const FriendsList = () => {
 
       {friends.length > 0 && (
         <>
-          <h2 className="friends-list__title">Friends</h2>
+          <h2 className="friends-list__title">Vrienden</h2>
           <ul className="friends-list__list">
             {friends.map((friend: User, i: number) => {
               return <FriendsItem {...friend} key={i} />;
