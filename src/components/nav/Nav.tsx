@@ -23,7 +23,6 @@ const Navigation = ({ page }: NavigationProps) => {
           Account
         </Link>
       </div>
-      <FilterBar />
     </div>
   );
 };

@@ -34,12 +34,11 @@
 }
 
 .filter-bar {
-  background: #f3f3f3;
-  padding: 22px;
+  padding: 17px;
   display: flex;
   flex-direction: row;
-
-  justify-content: space-between;
+  justify-content: center;
+  gap: 31px;
 }
 .filter {
   display: flex;
@@ -47,4 +46,8 @@
   justify-content: center;
   align-items: center;
   gap: 7px;
+
+  input {
+    display: none;
+  }
 }

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { UserContext } from "@/state/userContext";
 import cx from "classnames";
 import User from "@/types/user";
+import IconButton from "../button/IconButton";
 
 function convertToPlain(html: any) {
   // Create a new div element
@@ -97,26 +98,22 @@ const MovieItem = ({
           </>
         </div>
         <div className="movie-item__filter-buttons">
-          <button
-            className={cx(
-              "movie-item__filter-button movie-item__filter-button--plus",
-              user.watchlist.includes(external_id) && "active"
-            )}
+          <IconButton
+            color="green"
+            active={user.watchlist.includes(external_id)}
             disabled={!user.name}
             onClick={handleAddToWatchlist}
           >
-            +
-          </button>
-          <button
-            className={cx(
-              "movie-item__filter-button movie-item__filter-button--minus",
-              user.skiplist.includes(external_id) && "active"
-            )}
+            🍿
+          </IconButton>
+          <IconButton
+            color="red"
+            active={user.skiplist.includes(external_id)}
             disabled={!user.name}
             onClick={handleAddToSkipList}
           >
-            -
-          </button>
+            👎
+          </IconButton>
         </div>
       </div>
     </div>

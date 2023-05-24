@@ -1,8 +1,22 @@
 import { UserContext } from "@/state/userContext";
 
-import { useContext } from "react";
+import { useContext, useRef } from "react";
+import IconButton from "../button/IconButton";
 
 const Filter = ({ filter, value, updateFilters }: any) => {
+  let color;
+  if (filter == "watch") {
+    color = "green";
+  }
+  if (filter == "skip") {
+    color = "red";
+  }
+  if (filter == "rest") {
+    color = "blue";
+  }
+
+  const ref = useRef<HTMLInputElement>(null);
+
   return (
     <div className="filter">
       <input
@@ -10,10 +24,19 @@ const Filter = ({ filter, value, updateFilters }: any) => {
         id={`toggle-${filter}`}
         checked={value}
         onChange={(e) => updateFilters(filter, e.target.checked)}
+        ref={ref}
       />
-      <label htmlFor={`toggle-${filter}`} className="filter__label">
-        {filter}
-      </label>
+      <IconButton
+        color={color}
+        active={value}
+        onClick={() => {
+          ref.current?.click();
+        }}
+      >
+        {filter == "watch" && "🍿"}
+        {filter == "skip" && "👎"}
+        {filter == "rest" && "🎞"}
+      </IconButton>
     </div>
   );
 };
