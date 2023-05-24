@@ -20,12 +20,16 @@ const FriendsList = () => {
 
   return (
     <div className="friends-list">
-      <h3>Deel je profiel met je vrienden</h3>
+      {user.uid && (
+        <>
+          <h3>Deel je profiel met je vrienden</h3>
 
-      <Button
-        text={clipboard ? "Gekopieerd!" : "Link kopiëren"}
-        onClick={copyToClipboard}
-      />
+          <Button
+            text={clipboard ? "Gekopieerd!" : "Link kopiëren"}
+            onClick={copyToClipboard}
+          />
+        </>
+      )}
 
       {friends.length > 0 && (
         <>
